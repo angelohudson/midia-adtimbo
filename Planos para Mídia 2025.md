@@ -2,9 +2,9 @@
 
 ## Problemas e resoluções
 
-**_Probelmas de conecção do celular com o computador causando atrasos na operação da projeção._**
+**_Problemas de conexão do celular com o computador causando atrasos na operação da projeção._**
 
-- Em casos onde o operador de projeção estiver usando o celular, existe a possibilidade de ocorrer problemas na conecção com o computador. Nesse caso, quem estiver no computador deve dar total atenção à projeção e auxiliar o colega até que possa se recuperar.
+- Em casos onde o operador de projeção estiver usando o celular, pode ocorrer problemas na conexão com o computador. Nesse caso, quem estiver no computador deve dar total atenção à projeção e auxiliar o colega até que possa se recuperar.
 
 ## Planos de melhoria
 
