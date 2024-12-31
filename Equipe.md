@@ -12,6 +12,7 @@
 - Joabe
 - Maikon
 - Erisson
+- João Pedro
 
 ## Projeção:
 
@@ -31,7 +32,10 @@
 ## Edição de vídeo
 
 - Cleiton
+- Cirley
 
 ## Infraestrutura de rede
 
 - Mateus
+- Jocicleiton Gonçalves
+- Maikon
