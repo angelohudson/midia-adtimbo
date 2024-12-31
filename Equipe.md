@@ -29,7 +29,7 @@
 
 - Karen
 
-## Edição de vídeo
+## Produção de material audio visual
 
 - Cleiton
 - Cirley
