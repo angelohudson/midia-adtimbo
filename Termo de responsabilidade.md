@@ -16,6 +16,7 @@ Dentre as informações apresentadas temos:
 - Conhecer as músicas que serão exibidas desde que sejam informadas previamente;
 - Chegar 20 minutos mais cedo para ligar o projetor, televisão, painel de retorno do púlpito, computador e prepara o programa para operação durante o evento;
 - Estar disponível durante todo o evento na cabine preparado para exibir a projeção e informar caso algum problema aconteça ao responsável pelo evento;
+- Informar com antecedência caso não consiga comparecer e providenciar uma substituição (a substituição é de responsabilidade do escalado);
 - Pesquisar, formatar e inserir na base de músicas as que ainda não foram;
 - Usar o alerta do holyrics para chamar a atenção de alguém da igreja (quando solicitado pela salinha, equipe da recepção e etc);
 - Estar disponível a ajudar a pessoa da live;
