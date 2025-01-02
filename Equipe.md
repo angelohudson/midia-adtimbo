@@ -28,9 +28,11 @@
 ## Mídias sociais/Marketing:
 
 - Karen
+- Maria Estefany
 
 ## Produção de material audio visual
 
+- Angelo Hudson
 - Cleiton
 - Cirley
 
