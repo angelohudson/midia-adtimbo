@@ -35,6 +35,7 @@
 - Angelo Hudson
 - Cleiton
 - Cirley
+- Felipe
 
 ## Infraestrutura de rede
 
