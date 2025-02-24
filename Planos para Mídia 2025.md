@@ -8,8 +8,7 @@
 
 ## Planos de melhoria
 
-- Expansão da cabine de mídia para comportar um computador auxiliar específico para a projeção.
+- Produção de um vídeo institucional.
 - Reestruturação da rede física da igreja.
 - Inclusão de uma câmera móvel para auxiliar nas transmissões da igreja.
-
-## Atividades em andamento
+- Expansão da cabine de mídia para comportar um computador auxiliar específico para a projeção.
