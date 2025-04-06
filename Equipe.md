@@ -36,6 +36,7 @@
 - Cleiton
 - Cirley
 - Yasmim
+- Esther
 
 ## Infraestrutura de rede
 
