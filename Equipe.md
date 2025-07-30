@@ -13,6 +13,7 @@
 - Maikon
 - Erisson
 - João Pedro
+- Ariel
 
 ## Projeção:
 
@@ -24,6 +25,7 @@
 - João Pedro
 - Ariel
 - Yuri
+- Lucas
 
 ## Mídias sociais/Marketing:
 
