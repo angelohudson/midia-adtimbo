@@ -11,7 +11,6 @@ const pessoas = [
   "Cleiton",
   "Cirley",
   "Webert",
-  "Erison"
 ];
 const funcoes = ["Datashow", "Live", "Filmadora"];
 const eventosFixos = {
@@ -166,10 +165,12 @@ function adicionarLinha(horarioSel = "", funcaoSel = "", pessoaSel = "") {
   const div = document.createElement("div");
   div.classList.add("line");
 
+  // ⏰ Horário
   const inputHora = document.createElement("input");
   inputHora.type = "time";
   inputHora.value = horarioSel;
 
+  // 📌 Função
   const selectFuncao = document.createElement("select");
   funcoes.forEach((f) => {
     const option = document.createElement("option");
@@ -178,6 +179,8 @@ function adicionarLinha(horarioSel = "", funcaoSel = "", pessoaSel = "") {
     if (f === funcaoSel) option.selected = true;
     selectFuncao.appendChild(option);
   });
+
+  // 👤 Pessoa
   const selectPessoa = document.createElement("select");
   const optionDefault = document.createElement("option");
   optionDefault.text = "Selecione uma pessoa";
@@ -191,10 +194,33 @@ function adicionarLinha(horarioSel = "", funcaoSel = "", pessoaSel = "") {
     if (p === pessoaSel) option.selected = true;
     selectPessoa.appendChild(option);
   });
+
+  // ❌ Botão Remover (remove só esta linha no modal)
+  const btnRemover = document.createElement("button");
+  btnRemover.type = "button";
+  btnRemover.textContent = "Remover";
+  btnRemover.style.marginLeft = "8px";
+  btnRemover.style.marginTop = "0"; // evita empurrar a linha
+  btnRemover.style.background = "#e74c3c";
+  btnRemover.style.color = "#fff";
+  btnRemover.style.border = "none";
+  btnRemover.style.borderRadius = "4px";
+  btnRemover.style.padding = "4px 8px";
+  btnRemover.style.cursor = "pointer";
+  btnRemover.title = "Remover esta função da escala";
+
+  btnRemover.addEventListener("click", () => {
+    div.remove(); // só some do modal; a remoção vira definitiva ao clicar em Salvar
+  });
+
+  // Ordem IMPORTANTE para manter o seletor no botão Salvar:
+  // input (1), select função (2), select pessoa (3), botão remover (4)
   div.appendChild(inputHora);
   div.appendChild(selectFuncao);
   div.appendChild(selectPessoa);
-  linhasEscala.appendChild(div);
+  div.appendChild(btnRemover);
+
+  document.getElementById("linhas-escala").appendChild(div);
 }
 
 function exportarEscala() {
