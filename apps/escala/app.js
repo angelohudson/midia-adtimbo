@@ -11,6 +11,7 @@ const pessoas = [
   "Cleiton",
   "Cirley",
   "Webert",
+  "Nathan"
 ];
 const funcoes = ["Datashow", "Live", "Filmadora"];
 const eventosFixos = {
