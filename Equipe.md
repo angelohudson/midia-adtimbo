@@ -36,6 +36,9 @@
 
 - Angelo Hudson
 - Cleiton
+- Jocicleiton Gonçalves
+- Weslley
+- Gizelle
 - Cirley
 - Yasmim
 - Esther
