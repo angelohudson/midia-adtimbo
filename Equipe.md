@@ -4,8 +4,11 @@
 
 - Angelo Hudson
 - Jocicleiton Gonçalves
+- Maykon
 
-## Lives:
+## Trabalho interno:
+
+### Lives:
 
 - Angelo Hudson
 - Jocicleiton Gonçalves
@@ -15,7 +18,7 @@
 - João Pedro
 - Ariel
 
-## Projeção:
+### Projeção:
 
 - Angelo Hudson
 - Jocicleiton Gonçalves
@@ -26,25 +29,58 @@
 - Ariel
 - Yuri
 - Lucas
+- Nathan
+- Débora
+- Jonas
 
 ## Mídias sociais/Marketing:
 
-- Karen
-- Maria Estefany
+### Liderança
 
-## Produção de material audio visual
+- Karen: Lider de Mídias Sociais/Marketing
+  - Supervisão geral das redes sociais
+  - Planejamento de conteúdo
+  - Estratégias de engajamento
+  - Postagem de conteúdo em tudo (Youtube, Instagram, Facebook e etc)
+- Gizelle: Responsável pelas redes sociais
+  - Supervisão geral das redes sociais
+  - Posts no feed
+  - Stories
+  - Fotografias dos eventos
 
-- Angelo Hudson
-- Cleiton
-- Jocicleiton Gonçalves
-- Weslley
-- Gizelle
-- Cirley
-- Yasmim
-- Esther
+### Responsáveis pelas redes sociais
+
+- Maria Estefany: Responsável pelas redes sociais
+  - Posts no feed
+  - Stories
+  - Fotografias dos eventos
+
+### Produção de material audio visual
+
+- Cleiton:
+  - Editor de vídeo
+  - Responsável pelas edições gerais
+- Jocicleiton Gonçalves:
+  - Responsável pelas artes dos eventos e etc
+- Cirley:
+  - Responsável pelas artes dos eventos e etc
+- Weslley:
+  - Responsável pelas thumbnails das lives
+- Yasmim:
+  - Editora de vídeo
+  - Responsável pelo corte das pregações
+- Nathan:
+  - Editor de vídeo
+  - Responsável pelo corte das pregações
+- Débora:
+  - Editora de vídeo
+  - Responsável pelo corte das pregações
 
 ## Infraestrutura de rede
 
-- Mateus
-- Jocicleiton Gonçalves
-- Maikon
+- Mateus:
+  - Responsável pela manutenção de componentes físicos (luzes, cabos, instalações e etc)
+- Jocicleiton Gonçalves:
+  - Responsável pela manutenção da rede (internet, roteadores, switches e etc)
+- Maikon:
+  - Auxiliar de manutenção
