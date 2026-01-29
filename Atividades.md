@@ -16,8 +16,15 @@
 - Cultos do Ministério Feminino - Terceira Quarta (19h00)
 - Cultos de Ministério Masculino - Quarto Sábado (19h00)
 
-## Cobertura de fotos para mídias sociais:
+## Cobertura de fotos e vídeos para mídias sociais:
 
-- Cultos de celebração especiais (natal, pascoa, ano novo e etc);
+- Cultos de celebração especiais (natal, pascoa, ano novo e etc)
 - Eventos da igreja (timbó em missão e etc)
+- Shorts no youtube e Reels no Instagram: toda quarte (edição da pregação da última doutrina)
+- Shorts no youtube e Reels no Instagram: todo sábado (edição da pregação do último domingo)
 - Sob demanda
+
+## Outros trabalhos
+
+- Thumbnail personalizada em toda live
+- Artes para cultos ou eventos: sob demanda
