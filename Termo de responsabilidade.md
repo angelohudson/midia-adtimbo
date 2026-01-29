@@ -35,7 +35,8 @@ Além disso, buscamos uma amplificação do alcance da palavra de Deus em outras
 **No que se refere as lives realizadas durante os eventos na igreja, é de responsabilidade da pessoa escalada:**
 
 - Preparar a transmissão previamente incluindo Título (tema do culto e pregador), Descrição e data/hora;
-- Chegar mais cedo para ligar o computador, preparar o programa de controle das lives (OBS) e ligar as câmeras;
+- Chegar 45 minutos mais cedo para ligar o computador, preparar o programa de controle das lives (OBS) e ligar as câmeras;
+- Seguir o (Checklist da live)[https://github.com/angelohudson/midia-adtimbo/blob/main/Check-list.md]
 - Verificar a conexão com a internet e se prevenir de eventuais problemas;
 - Conduzir a live durante todo o evento;
 - Está disponível a ajudar a pessoa responsável pela projeção;
