@@ -42,11 +42,6 @@
   - Planejamento de conteúdo
   - Estratégias de engajamento
   - Postagem de conteúdo em tudo (Youtube, Instagram, Facebook e etc)
-- Gizelle: Responsável pelas redes sociais
-  - Supervisão geral das redes sociais
-  - Posts no feed
-  - Stories
-  - Fotografias dos eventos
 
 ### Responsáveis pelas redes sociais
 
@@ -54,27 +49,38 @@
   - Posts no feed
   - Stories
   - Fotografias dos eventos
+- Karen: Responsável pelas redes sociais
+  - Posts no feed
+  - Stories
+  - Fotografias dos eventos
+- Joabe: Responsável pelas redes sociais
+  - Posts no feed
+  - Stories
+  - Fotografias dos eventos
+- Yasmim:
+  - Fotografias dos eventos
+- Lucas:
+  - Fotografias dos eventos
+- Débora:
+  - Fotografias dos eventos
 
 ### Produção de material audio visual
 
-- Cleiton:
-  - Editor de vídeo
-  - Responsável pelas edições gerais
 - Jocicleiton Gonçalves:
   - Responsável pelas artes dos eventos e etc
 - Cirley:
   - Responsável pelas artes dos eventos e etc
 - Weslley:
   - Responsável pelas thumbnails das lives
-- Yasmim:
-  - Editora de vídeo
-  - Responsável pelo corte das pregações
 - Nathan:
   - Editor de vídeo
   - Responsável pelo corte das pregações
 - Débora:
   - Editora de vídeo
   - Responsável pelo corte das pregações
+- Cleiton:
+  - Editor de vídeo
+  - Responsável pelas edições gerais
 
 ## Infraestrutura de rede
 
