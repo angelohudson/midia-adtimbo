@@ -19,3 +19,4 @@ Segue abaixo as informações dos itens adquiridos para sustentar a área de Mí
 | Projetor                  | 1          | Eventos no anexo      | Usado             | Boa      |                                           |                                                                                   |
 | Conversor RJ45/HDMI (par) | 1          | Eventos no anexo      | Novo              | Instável |                                           |                                                                                   |
 | Cabo de rede Cat6 B (15m) | 1          | Eventos no anexo      | Novo              | Boa      |                                           |                                                                                   |
+| Câmera Sony Zv-e10        | 1          | Transmissões          | Novo              | Boa      |                                           |
