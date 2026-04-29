@@ -11,7 +11,9 @@ const pessoas = [
   "Cleiton",
   "Cirley",
   "Webert",
-  "Nathan"
+  "Nathan",
+  "Jonas",
+  "PH"
 ];
 const funcoes = ["Datashow", "Live", "Filmadora"];
 const eventosFixos = {
@@ -41,6 +43,7 @@ pessoas.forEach((p) => {
 
 const botaoGerar = document.getElementById("gerar");
 const botaoExportar = document.getElementById("exportar");
+const botaoExportarCSV = document.getElementById("exportarCSV");
 const botaoImportar = document.getElementById("importarBtn");
 const inputImportar = document.getElementById("importar");
 const mesSelecionado = document.getElementById("mes");
@@ -55,6 +58,7 @@ let diaAtual = null;
 window.addEventListener("load", carregarLocalStorage);
 botaoGerar.addEventListener("click", gerarCalendario);
 botaoExportar.addEventListener("click", exportarEscala);
+botaoExportarCSV.addEventListener("click", exportarAgendaCSV);
 botaoImportar.addEventListener("click", () => inputImportar.click());
 inputImportar.addEventListener("change", importarEscala);
 mesSelecionado.addEventListener("change", atualizaEscalasImportadas);
@@ -388,6 +392,106 @@ function atualizaTabelaContagem() {
         `;
     countBody.appendChild(linha);
   });
+}
+
+function exportarAgendaCSV() {
+  const ano = new Date().getFullYear();
+  const mes = parseInt(document.getElementById("mes").value);
+
+  const funcaoPrefix = { Datashow: "PC", Live: "APP", Filmadora: "CAM" };
+
+  function abreviar(nome) {
+    const partes = nome.trim().split(/\s+/);
+    if (partes.length > 1) return partes.map((p) => p[0].toUpperCase()).join("");
+    return nome.slice(0, 3).toUpperCase();
+  }
+
+  function formatarHora12(h24) {
+    const [h, m] = h24.split(":").map(Number);
+    const periodo = h >= 12 ? "PM" : "AM";
+    const h12 = h % 12 || 12;
+    return `${h12}:${m.toString().padStart(2, "0")} ${periodo}`;
+  }
+
+  function getEventoInfo(dia, horario) {
+    const data = new Date(ano, mes, dia);
+    const diaSemana = data.getDay();
+    const ocorrencia = Math.floor((dia - 1) / 7) + 1;
+
+    if (diaSemana === 0) {
+      if (horario === "09:00") return { nome: "EBD", local: "EBD", fim: "10:30 AM" };
+      if (horario === "16:30") return { nome: "Culto da Tarde", local: "Culto da Tarde", fim: "6:00 PM" };
+      if (horario === "18:30") return { nome: "Culto da Noite", local: "Culto da Noite", fim: "8:00 PM" };
+    }
+    if (diaSemana === 4 && horario === "19:00")
+      return { nome: "Culto de Doutrina", local: "Culto de Doutrina", fim: "9:00 PM" };
+    if (diaSemana === 6 && ocorrencia === 1 && horario === "19:00")
+      return { nome: "Culto de Jovens ou Adolescentes", local: "Culto de Jovens ou Adolescentes", fim: "9:00 PM" };
+    if (diaSemana === 2 && ocorrencia === 1 && horario === "19:00")
+      return { nome: "Culto de Crianças", local: "Culto de Crianças", fim: "9:00 PM" };
+    if (diaSemana === 3 && ocorrencia === 3 && horario === "19:00")
+      return { nome: "Culto Feminino", local: "Culto Feminino", fim: "9:00 PM" };
+    if (diaSemana === 6 && ocorrencia === 4 && horario === "19:00")
+      return { nome: "Culto Masculino", local: "Culto Masculino", fim: "9:00 PM" };
+
+    return { nome: horario, local: "", fim: "" };
+  }
+
+  function formatarData(ano, mes, dia) {
+    const m = (mes + 1).toString().padStart(2, "0");
+    const d = dia.toString().padStart(2, "0");
+    return `${m}/${d}/${ano}`;
+  }
+
+  function csvField(val) {
+    const s = String(val);
+    if (/[,"\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }
+
+  const linhas = ["Subject,Start date,Start time,End Time,Location,Description,All Day Event,Private"];
+
+  for (const dia of Object.keys(escalas).sort((a, b) => Number(a) - Number(b))) {
+    const itens = escalas[dia];
+    if (!itens || itens.length === 0) continue;
+
+    const porHorario = {};
+    itens.forEach((item) => {
+      if (!porHorario[item.horario]) porHorario[item.horario] = [];
+      porHorario[item.horario].push(item);
+    });
+
+    const dataFormatada = formatarData(ano, mes, parseInt(dia));
+
+    for (const horario of Object.keys(porHorario).sort()) {
+      const grupo = porHorario[horario];
+      const info = getEventoInfo(parseInt(dia), horario);
+      const subject = grupo.map((i) => abreviar(i.pessoa)).join(" | ");
+      const description = grupo
+        .map((i) => `${funcaoPrefix[i.funcao] || i.funcao}: ${abreviar(i.pessoa)}`)
+        .join("\n");
+
+      linhas.push(
+        [
+          csvField(subject),
+          dataFormatada,
+          formatarHora12(horario),
+          info.fim,
+          csvField(info.local),
+          csvField(description),
+          "False",
+          "True",
+        ].join(",")
+      );
+    }
+  }
+
+  const bom = "﻿";
+  const blob = new Blob([bom + linhas.join("\r\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.download = `escala_${ano}_${(mes + 1).toString().padStart(2, "0")}.csv`;
+  a.href = URL.createObjectURL(blob);
+  a.click();
 }
 
 function encontrarDiaPorOcorrencia(ano, mes, diaSemana, ocorrencia) {

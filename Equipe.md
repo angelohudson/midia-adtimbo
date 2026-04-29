@@ -32,6 +32,8 @@
 - Nathan
 - Débora
 - Jonas
+- PH
+- Cleiton
 
 ## Mídias sociais/Marketing:
 
@@ -54,6 +56,14 @@
   - Posts no feed
   - Stories
   - Fotografias dos eventos
+- Joabe: Responsável pelas redes sociais
+  - Posts no feed
+  - Stories
+  - Fotografias dos eventos
+- Esther: Responsável pelas redes sociais
+  - Posts no feed
+  - Stories
+  - Fotografias dos eventos
 
 ### Produção de material audio visual
 
@@ -69,12 +79,16 @@
 - Yasmim:
   - Editora de vídeo
   - Responsável pelo corte das pregações
+  - Fotografia dos eventos
 - Nathan:
   - Editor de vídeo
   - Responsável pelo corte das pregações
 - Débora:
   - Editora de vídeo
   - Responsável pelo corte das pregações
+  - Fotografia dos eventos
+- Lucas:
+  - Fotografia dos eventos
 
 ## Infraestrutura de rede
 
