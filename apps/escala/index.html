@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
@@ -144,11 +144,11 @@
       <table id="contagem">
         <thead>
           <tr>
-            <th>Integrante</th>
-            <th>Datashow</th>
-            <th>Live</th>
-            <th>Filmadora</th>
-            <th>TOTAL</th>
+            <th data-sort="Integrante">Integrante ↕</th>
+            <th data-sort="Datashow">Datashow ↕</th>
+            <th data-sort="Live">Live ↕</th>
+            <th data-sort="Filmadora">Filmadora ↕</th>
+            <th data-sort="TOTAL">TOTAL ↕</th>
           </tr>
         </thead>
         <tbody id="count-body"></tbody>
@@ -158,6 +158,15 @@
     <!-- Modal -->
     <div class="modal" id="modal">
       <div class="modal-content">
+        <div style="margin-bottom: 10px">
+          <label>Título do Culto/Evento:</label>
+          <input
+            type="text"
+            id="titulo-evento"
+            placeholder="Digite um título personalizado"
+            style="width: 100%"
+          />
+        </div>
         <h2>Escalar para o dia <span id="modal-dia"></span></h2>
         <div id="linhas-escala"></div>
         <button id="add-linha">Adicionar linha</button>

@@ -13,9 +13,22 @@ const pessoas = [
   "Webert",
   "Nathan",
   "Jonas",
-  "PH"
+  "PH",
+  "Maria Estefany",
+  "Débora",
+  "Yasmim",
+  "Karen",
+  "Esther",
 ];
-const funcoes = ["Datashow", "Live", "Filmadora"];
+const funcoes = [
+  "Datashow",
+  "Live",
+  "Filmadora",
+  "Stories",
+  "Corte",
+  "Fotos",
+  "Post",
+];
 const eventosFixos = {
   sabado_1: [{ horario: "19:00", nome: "Culto de Jovens e Adolescentes" }],
   terca_1: [{ horario: "19:00", nome: "Crianças" }],
@@ -29,6 +42,7 @@ const eventosFixos = {
   quinta_todo: [{ horario: "19:00", nome: "Culto de Quinta" }],
 };
 
+let titulosCustomizados = {};
 let escalas = {};
 let escalasImportadasRelativas = {};
 let contagem = {};
@@ -54,6 +68,8 @@ const modalDia = document.getElementById("modal-dia");
 const linhasEscala = document.getElementById("linhas-escala");
 
 let diaAtual = null;
+let colunaOrdenacao = "TOTAL";
+let ordemCrescente = false;
 
 window.addEventListener("load", carregarLocalStorage);
 botaoGerar.addEventListener("click", gerarCalendario);
@@ -64,6 +80,14 @@ inputImportar.addEventListener("change", importarEscala);
 mesSelecionado.addEventListener("change", atualizaEscalasImportadas);
 
 document.getElementById("salvar").addEventListener("click", () => {
+  const titulo = document.getElementById("titulo-evento").value.trim();
+
+  if (titulo) {
+    titulosCustomizados[diaAtual] = titulo;
+  } else {
+    delete titulosCustomizados[diaAtual];
+  }
+
   const linhas = Array.from(document.querySelectorAll(".line"));
   escalas[diaAtual] = linhas.map((line) => {
     return {
@@ -97,10 +121,46 @@ document.getElementById("fechar").addEventListener("click", () => {
   modal.style.display = "none";
 });
 
+function obterTituloEvento(dia) {
+  if (titulosCustomizados[dia]) {
+    return titulosCustomizados[dia];
+  }
+
+  const ano = new Date().getFullYear();
+  const mes = parseInt(document.getElementById("mes").value);
+
+  const data = new Date(ano, mes, dia);
+  const diaSemana = data.getDay();
+  const ocorrencia = Math.floor((dia - 1) / 7) + 1;
+
+  const diaSemanaNomes = [
+    "domingo",
+    "segunda",
+    "terca",
+    "quarta",
+    "quinta",
+    "sexta",
+    "sabado",
+  ];
+
+  const nomeDia = diaSemanaNomes[diaSemana];
+
+  const chaves = [`${nomeDia}_${ocorrencia}`, `${nomeDia}_todo`];
+
+  for (const chave of chaves) {
+    if (eventosFixos[chave]?.length) {
+      return eventosFixos[chave][0].nome;
+    }
+  }
+
+  return "";
+}
+
 function salvarLocalStorage() {
   const dados = {
     escalas,
     escalasImportadasRelativas,
+    titulosCustomizados,
     mesSelecionado: document.getElementById("mes").value,
   };
   localStorage.setItem("escalaApp", JSON.stringify(dados));
@@ -110,8 +170,11 @@ function carregarLocalStorage() {
   const dados = JSON.parse(localStorage.getItem("escalaApp"));
   if (dados) {
     escalasImportadasRelativas = dados.escalasImportadasRelativas || {};
+    titulosCustomizados = dados.titulosCustomizados || {};
+
     const mesSalvo = dados.mesSelecionado ?? new Date().getMonth();
     document.getElementById("mes").value = mesSalvo;
+
     atualizaEscalasImportadas();
   }
 }
@@ -155,12 +218,14 @@ function gerarCalendario() {
 }
 
 function abrirModal(dia) {
+  const inputTitulo = document.getElementById("titulo-evento");
+  inputTitulo.value = titulosCustomizados[dia] || "";
   diaAtual = dia;
   modalDia.textContent = dia;
   linhasEscala.innerHTML = "";
   const escalasDia = escalas[dia] || [];
   escalasDia.forEach((item) =>
-    adicionarLinha(item.horario, item.funcao, item.pessoa)
+    adicionarLinha(item.horario, item.funcao, item.pessoa),
   );
   if (escalasDia.length === 0) adicionarLinha();
   modal.style.display = "flex";
@@ -245,7 +310,7 @@ function exportarEscala() {
         mesSelecionado: mes,
       }),
     ],
-    { type: "text/plain" }
+    { type: "text/plain" },
   );
   const a = document.createElement("a");
   a.download = "escalas.txt";
@@ -297,8 +362,26 @@ function atualizaExibicaoTodosOsDias() {
 
 function atualizaExibicaoDia(dia, celula) {
   Array.from(celula.querySelectorAll(".escala-item")).forEach((el) =>
-    el.remove()
+    el.remove(),
   );
+
+  Array.from(celula.querySelectorAll(".titulo-evento")).forEach((el) =>
+    el.remove(),
+  );
+
+  const titulo = obterTituloEvento(dia);
+
+  if (titulo) {
+    const tituloDiv = document.createElement("div");
+    tituloDiv.classList.add("titulo-evento");
+    tituloDiv.style.fontWeight = "bold";
+    tituloDiv.style.color = "#2c3e50";
+    tituloDiv.style.marginBottom = "4px";
+    tituloDiv.textContent = titulo;
+
+    celula.appendChild(tituloDiv);
+  }
+
   const ano = new Date().getFullYear();
   const mes = parseInt(document.getElementById("mes").value);
   const data = new Date(ano, mes, dia);
@@ -319,6 +402,23 @@ function atualizaExibicaoDia(dia, celula) {
     `${diaSemanaNome}_${ocorrencia}`, // ex.: "sabado_1"
     `${diaSemanaNome}_todo`, // ex.: "domingo_todo"
   ];
+
+  document.querySelectorAll("#contagem th[data-sort]").forEach((th) => {
+    th.style.cursor = "pointer";
+
+    th.addEventListener("click", () => {
+      const novaColuna = th.dataset.sort;
+
+      if (colunaOrdenacao === novaColuna) {
+        ordemCrescente = !ordemCrescente;
+      } else {
+        colunaOrdenacao = novaColuna;
+        ordemCrescente = false;
+      }
+
+      atualizaTabelaContagem();
+    });
+  });
 
   // 1️⃣ Coletar todas as escalas normais do dia atual
   const escalasDoDia = escalas[dia] ? [...escalas[dia]] : [];
@@ -377,19 +477,40 @@ function atualizaContagem() {
 
 function atualizaTabelaContagem() {
   countBody.innerHTML = "";
+
+  const pessoasOrdenadas = [...pessoas].sort((a, b) => {
+    const valorA =
+      colunaOrdenacao === "Integrante" ? a : contagem[a][colunaOrdenacao];
+
+    const valorB =
+      colunaOrdenacao === "Integrante" ? b : contagem[b][colunaOrdenacao];
+
+    if (typeof valorA === "string") {
+      return ordemCrescente
+        ? valorA.localeCompare(valorB)
+        : valorB.localeCompare(valorA);
+    }
+
+    return ordemCrescente ? valorA - valorB : valorB - valorA;
+  });
+
   const maxContagem = Math.max(...pessoas.map((p) => contagem[p]["TOTAL"]));
-  pessoas.forEach((p) => {
+
+  pessoasOrdenadas.forEach((p) => {
     const linha = document.createElement("tr");
+
     if (contagem[p]["TOTAL"] === maxContagem && maxContagem > 0) {
       linha.classList.add("highlight");
     }
+
     linha.innerHTML = `
-            <td>${p}</td>
-            <td>${contagem[p]["Datashow"]}</td>
-            <td>${contagem[p]["Live"]}</td>
-            <td>${contagem[p]["Filmadora"]}</td>
-            <td>${contagem[p]["TOTAL"]}</td>
-        `;
+  <td>${p}</td>
+  <td>${contagem[p]["Datashow"]}</td>
+  <td>${contagem[p]["Live"]}</td>
+  <td>${contagem[p]["Filmadora"]}</td>
+  <td>${contagem[p]["TOTAL"]}</td>
+`;
+
     countBody.appendChild(linha);
   });
 }
@@ -402,7 +523,8 @@ function exportarAgendaCSV() {
 
   function abreviar(nome) {
     const partes = nome.trim().split(/\s+/);
-    if (partes.length > 1) return partes.map((p) => p[0].toUpperCase()).join("");
+    if (partes.length > 1)
+      return partes.map((p) => p[0].toUpperCase()).join("");
     return nome.slice(0, 3).toUpperCase();
   }
 
@@ -419,20 +541,51 @@ function exportarAgendaCSV() {
     const ocorrencia = Math.floor((dia - 1) / 7) + 1;
 
     if (diaSemana === 0) {
-      if (horario === "09:00") return { nome: "EBD", local: "EBD", fim: "10:30 AM" };
-      if (horario === "16:30") return { nome: "Culto da Tarde", local: "Culto da Tarde", fim: "6:00 PM" };
-      if (horario === "18:30") return { nome: "Culto da Noite", local: "Culto da Noite", fim: "8:00 PM" };
+      if (horario === "09:00")
+        return { nome: "EBD", local: "EBD", fim: "10:30 AM" };
+      if (horario === "16:30")
+        return {
+          nome: "Culto da Tarde",
+          local: "Culto da Tarde",
+          fim: "6:00 PM",
+        };
+      if (horario === "18:30")
+        return {
+          nome: "Culto da Noite",
+          local: "Culto da Noite",
+          fim: "8:00 PM",
+        };
     }
     if (diaSemana === 4 && horario === "19:00")
-      return { nome: "Culto de Doutrina", local: "Culto de Doutrina", fim: "9:00 PM" };
+      return {
+        nome: "Culto de Doutrina",
+        local: "Culto de Doutrina",
+        fim: "9:00 PM",
+      };
     if (diaSemana === 6 && ocorrencia === 1 && horario === "19:00")
-      return { nome: "Culto de Jovens ou Adolescentes", local: "Culto de Jovens ou Adolescentes", fim: "9:00 PM" };
+      return {
+        nome: "Culto de Jovens ou Adolescentes",
+        local: "Culto de Jovens ou Adolescentes",
+        fim: "9:00 PM",
+      };
     if (diaSemana === 2 && ocorrencia === 1 && horario === "19:00")
-      return { nome: "Culto de Crianças", local: "Culto de Crianças", fim: "9:00 PM" };
+      return {
+        nome: "Culto de Crianças",
+        local: "Culto de Crianças",
+        fim: "9:00 PM",
+      };
     if (diaSemana === 3 && ocorrencia === 3 && horario === "19:00")
-      return { nome: "Culto Feminino", local: "Culto Feminino", fim: "9:00 PM" };
+      return {
+        nome: "Culto Feminino",
+        local: "Culto Feminino",
+        fim: "9:00 PM",
+      };
     if (diaSemana === 6 && ocorrencia === 4 && horario === "19:00")
-      return { nome: "Culto Masculino", local: "Culto Masculino", fim: "9:00 PM" };
+      return {
+        nome: "Culto Masculino",
+        local: "Culto Masculino",
+        fim: "9:00 PM",
+      };
 
     return { nome: horario, local: "", fim: "" };
   }
@@ -449,9 +602,13 @@ function exportarAgendaCSV() {
     return s;
   }
 
-  const linhas = ["Subject,Start date,Start time,End Time,Location,Description,All Day Event,Private"];
+  const linhas = [
+    "Subject,Start date,Start time,End Time,Location,Description,All Day Event,Private",
+  ];
 
-  for (const dia of Object.keys(escalas).sort((a, b) => Number(a) - Number(b))) {
+  for (const dia of Object.keys(escalas).sort(
+    (a, b) => Number(a) - Number(b),
+  )) {
     const itens = escalas[dia];
     if (!itens || itens.length === 0) continue;
 
@@ -466,9 +623,18 @@ function exportarAgendaCSV() {
     for (const horario of Object.keys(porHorario).sort()) {
       const grupo = porHorario[horario];
       const info = getEventoInfo(parseInt(dia), horario);
+
+      const tituloPersonalizado = titulosCustomizados[dia];
+
+      if (tituloPersonalizado) {
+        info.nome = tituloPersonalizado;
+        info.local = tituloPersonalizado;
+      }
       const subject = grupo.map((i) => abreviar(i.pessoa)).join(" | ");
       const description = grupo
-        .map((i) => `${funcaoPrefix[i.funcao] || i.funcao}: ${abreviar(i.pessoa)}`)
+        .map(
+          (i) => `${funcaoPrefix[i.funcao] || i.funcao}: ${abreviar(i.pessoa)}`,
+        )
         .join("\n");
 
       linhas.push(
@@ -481,13 +647,15 @@ function exportarAgendaCSV() {
           csvField(description),
           "False",
           "True",
-        ].join(",")
+        ].join(","),
       );
     }
   }
 
   const bom = "﻿";
-  const blob = new Blob([bom + linhas.join("\r\n")], { type: "text/csv;charset=utf-8" });
+  const blob = new Blob([bom + linhas.join("\r\n")], {
+    type: "text/csv;charset=utf-8",
+  });
   const a = document.createElement("a");
   a.download = `escala_${ano}_${(mes + 1).toString().padStart(2, "0")}.csv`;
   a.href = URL.createObjectURL(blob);
