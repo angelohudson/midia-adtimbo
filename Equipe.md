@@ -17,6 +17,7 @@
 - Erisson
 - João Pedro
 - Ariel
+- Sofia
 
 ### Projeção:
 
@@ -68,6 +69,11 @@
   - Fotografias dos eventos
 - Débora:
   - Fotografias dos eventos
+- Eduarda
+  - Posts no feed
+  - Stories
+  - Fotografias dos eventos
+  
 
 ### Produção de material audio visual
 
@@ -86,6 +92,8 @@
   - Responsável pelo corte das pregações
 - Débora:
   - Editora de vídeo
+  - Responsável pelo corte das pregações
+- Sofia
   - Responsável pelo corte das pregações
 
 ## Infraestrutura de rede
