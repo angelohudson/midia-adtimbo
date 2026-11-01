@@ -19,6 +19,9 @@ const pessoas = [
   "Yasmim",
   "Karen",
   "Esther",
+  "Eduarda",
+  "Sofia",
+  "Rafael"
 ];
 const funcoes = [
   "Datashow",
@@ -519,7 +522,7 @@ function exportarAgendaCSV() {
   const ano = new Date().getFullYear();
   const mes = parseInt(document.getElementById("mes").value);
 
-  const funcaoPrefix = { Datashow: "PC", Live: "APP", Filmadora: "CAM" };
+  const funcaoPrefix = { Datashow: "Datashow", Live: "Live", Filmadora: "Filmadora" };
 
   function abreviar(nome) {
     const partes = nome.trim().split(/\s+/);
